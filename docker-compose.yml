@@ -1,0 +1,27 @@
+name: microservices-test
+
+services:
+  api-gateway:
+    container_name: api-gateway
+    env_file:
+      - ./.env
+    build:
+      context: .
+      args:
+        - APP=api-gateway
+    restart: always
+    ports:
+      - 3011:3011
+  core:
+    container_name: core
+    env_file:
+      - ./.env
+    build:
+      context: .
+      args:
+        - APP=core
+    restart: always
+
+networks:
+  default:
+    name: test-network
