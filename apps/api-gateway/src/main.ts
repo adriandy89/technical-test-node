@@ -9,6 +9,7 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { fastifyMultipart } from '@fastify/multipart';
+import rateLimit from '@fastify/rate-limit';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { RabbitMQ } from '@app/shared';
@@ -22,6 +23,13 @@ async function bootstrap() {
     limits: {
       fileSize: 1_000_000, // p.ej. 1 MB
     },
+  });
+  await app.register(rateLimit, {
+    max: 120, // requests
+    timeWindow: '1 minute', // interval
+    // store: ..., // Store 
+    // keyGenerator: (req) => req.headers['x-api-key'] || req.ip,
+    // etc.
   });
   app.use(helmet());
   const logger = new Logger('bootstrap');
