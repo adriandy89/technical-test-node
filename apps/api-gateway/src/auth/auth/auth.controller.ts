@@ -24,14 +24,7 @@ import { JwtService } from '@nestjs/jwt';
 @ApiTags('Authentication')
 @Controller('auth')
 export class AuthController {
-  constructor(private jwtService: JwtService) {}
-
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
-  @Get('profile')
-  async getProfile(@GetUserInfo() user) {
-    return { user };
-  }
+  constructor(private jwtService: JwtService) { }
 
   @UseGuards(LocalAuthGuard)
   @HttpCode(HttpStatus.OK)
@@ -67,11 +60,12 @@ export class AuthController {
     };
   }
 
+
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @Get('test')
-  accessWithToken(@Request() req) {
-    console.log(req.user);
-    return { message: 'Access Ok! ', user: req.user };
+  @ApiOperation({ summary: "Current User Information" })
+  @Get('profile')
+  async getProfile(@GetUserInfo() user) {
+    return { user };
   }
 }

@@ -8,6 +8,7 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+import { fastifyMultipart } from '@fastify/multipart';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { RabbitMQ } from '@app/shared';
@@ -17,6 +18,11 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
+  await app.register(fastifyMultipart, {
+    limits: {
+      fileSize: 1_000_000, // p.ej. 1 MB
+    },
+  });
   app.use(helmet());
   const logger = new Logger('bootstrap');
   const configService = app.get(ConfigService);

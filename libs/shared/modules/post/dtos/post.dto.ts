@@ -1,21 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Role } from '../enums';
 
-export class UserDto {
+export class PostDto {
   @ApiProperty()
   readonly id: string;
 
   @ApiProperty()
-  readonly username: string;
+  readonly title: string;
 
   @ApiProperty()
-  readonly name: string;
-
-  @ApiProperty()
-  readonly role: Role;
-
-  @ApiProperty()
-  enabled: boolean;
+  readonly content: string;
 
   @ApiProperty()
   readonly createdAt: Date;
@@ -23,7 +16,7 @@ export class UserDto {
   @ApiProperty()
   readonly updatedAt?: Date;
 
-  constructor(partial: Partial<UserDto>) {
+  constructor(partial: Partial<PostDto>) {
     Object.assign(this, partial);
   }
 }

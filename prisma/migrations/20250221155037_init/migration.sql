@@ -6,6 +6,7 @@ CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "name" TEXT,
+    "avatar" TEXT,
     "password" TEXT NOT NULL,
     "role" "Role" NOT NULL DEFAULT 'USER',
     "enabled" BOOLEAN NOT NULL DEFAULT true,
@@ -18,8 +19,8 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "posts" (
     "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "content" TEXT,
+    "title" VARCHAR(255) NOT NULL,
+    "content" VARCHAR(2048),
     "authorId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

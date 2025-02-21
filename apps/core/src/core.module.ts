@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
+import { PostModule } from './post/post.module';
 
 @Module({
   imports: [
@@ -8,8 +9,9 @@ import { UserModule } from './user/user.module';
       isGlobal: true,
     }),
     UserModule,
+    PostModule,
   ],
   controllers: [],
   providers: [],
 })
-export class CoreModule {}
+export class CoreModule { }

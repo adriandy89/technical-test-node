@@ -11,6 +11,7 @@ model User {
   id        String   @id @default(uuid())
   username  String   @unique
   name      String?
+  avatar    String?
   password  String
   role      Role     @default(USER)
   enabled   Boolean  @default(true)
@@ -24,8 +25,8 @@ model User {
 
 model Post {
   id        String   @id @default(uuid())
-  title     String
-  content   String?
+  title     String   @db.VarChar(255)
+  content   String?  @db.VarChar(2048)
   authorId  String
   author    User     @relation(fields: [authorId], references: [id])
   createdAt DateTime @default(now())
