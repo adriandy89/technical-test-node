@@ -16,11 +16,11 @@ export class PostPageOptionsDto extends PageOptionsDto {
   @IsString()
   @IsNotEmpty()
   @IsOptional()
-  readonly search: string;
+  readonly search?: string;
 
   @ApiPropertyOptional()
   @IsString()
   @IsNotEmpty()
   @IsOptional()
-  readonly authorId: string;
+  readonly authorId?: string;
 }

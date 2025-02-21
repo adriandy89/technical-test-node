@@ -16,5 +16,5 @@ export class UserPageOptionsDto extends PageOptionsDto {
   @IsString()
   @IsNotEmpty()
   @IsOptional()
-  readonly search: string;
+  readonly search?: string;
 }
