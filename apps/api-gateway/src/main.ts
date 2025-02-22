@@ -85,7 +85,7 @@ async function bootstrap() {
   });
   await app.startAllMicroservices();
 
-  await app.listen(port, () => {
+  await app.listen(port, '0.0.0.0', () => {
     logger.verbose(`CORS Enabled: ${cors}`);
     logger.verbose(`Server on port: ${port}`);
   });
